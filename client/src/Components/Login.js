@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { CssBaseline, Avatar, Button, TextField, Container, Typography } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { loginStyles, StyledTitle } from './Styles';
@@ -41,5 +42,9 @@ function Login({ login }) {
     </div>
   );
 }
+
+Login.propTypes = {
+  login: PropTypes.func,
+};
 
 export default Login;

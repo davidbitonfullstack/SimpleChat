@@ -29,6 +29,7 @@ class Chat extends Component {
         messages: [
           ...this.state.messages,
           {
+            id: message.id,
             msg: message.message,
             user: message.user,
           },
@@ -59,6 +60,7 @@ class Chat extends Component {
       messages: [
         ...state.messages,
         {
+          id: message.id,
           msg: message.message,
           user: message.user,
         },
@@ -76,22 +78,24 @@ class Chat extends Component {
   render() {
     return (
       <MuiThemeProvider>
-        <CssBaseline />
-        {this.state.isLoggedIn ? (
-          <div>
-            <StyledTitle>Hello {this.state.user}</StyledTitle>
-            {this.state.messages.map((message) => (
-              <div key={message.msg}>
-                <ChatMessage user={this.state.user} message={message} />
-              </div>
-            ))}
-            <StyledBottom>
-              <ChatInput value={this.state.searchVal} input={(value) => this.submitMessage(value)} />
-            </StyledBottom>
-          </div>
-        ) : (
-          <StyledLogin login={(value) => this.setState({ isLoggedIn: true, user: value })} />
-        )}
+        <div>
+          <CssBaseline />
+          {this.state.isLoggedIn ? (
+            <div>
+              <StyledTitle>Hello {this.state.user}</StyledTitle>
+              {this.state.messages.map((message) => (
+                <div key={message.id}>
+                  <ChatMessage user={this.state.user} message={message} />
+                </div>
+              ))}
+              <StyledBottom>
+                <ChatInput value={this.state.searchVal} input={(value) => this.submitMessage(value)} />
+              </StyledBottom>
+            </div>
+          ) : (
+            <StyledLogin login={(value) => this.setState({ isLoggedIn: true, user: value })} />
+          )}
+        </div>
       </MuiThemeProvider>
     );
   }
