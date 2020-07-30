@@ -55,7 +55,9 @@ export class DataAccess {
     logger.info(`DataAccess getAll`);
 
     try {
-      return await Messages.findOne({ order: [['id', 'DESC']] });
+      const result = await Messages.findAll({ order: [['id', 'DESC']], limit: 10 });
+
+      return result.reverse();
     } catch (err) {
       const msg = `error while adding message: ${err}`;
       throw new Error(msg);
