@@ -8,7 +8,7 @@ function ChatInput({ input, value }) {
   const classes = chatInputStyles();
 
   return (
-    <StyledPaper component='form' className={classes.root}>
+    <StyledPaper className={classes.root}>
       <InputBase
         value={value}
         onChange={(e) => setMessage(e.target.value)}
@@ -16,7 +16,7 @@ function ChatInput({ input, value }) {
         placeholder='Input message and send'
       />
       <Divider className={classes.divider} orientation='vertical' />
-      <IconButton onClick={() => input(message)} color='primary' className={classes.iconButton} aria-label='directions'>
+      <IconButton onClick={() => input(message)} type='submit' color='primary' className={classes.iconButton} aria-label='directions'>
         <SendIcon />
       </IconButton>
     </StyledPaper>

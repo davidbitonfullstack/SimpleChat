@@ -15,32 +15,31 @@ const logger = log4js_1.getLogger();
 logger.level = 'debug';
 const express = require("express");
 const bodyParser = require("body-parser");
-const WebSocket = require("ws");
-// import { Server } from 'http';
 const http_1 = require("http");
 const cors_1 = require("./utils/cors");
+const api_websocket_1 = require("./controllers/api-websocket");
+const sequelize_1 = require("sequelize");
+// import dbConfig from '../config/config.json';
+const server_controller_1 = require("./controllers/server.controller");
+const sequelize = new sequelize_1.Sequelize('simple_chat', 'root', 'root', {
+    host: '127.0.0.1',
+    dialect: 'mysql',
+    define: {
+        timestamps: false,
+    },
+});
 const app = express();
 const port = process.env.PORT || 8095;
 const server = http_1.createServer(app);
 const router = express.Router();
 app.use(cors_1.corsHandler);
 app.use(bodyParser.json());
-app.use('/api/admin', router);
-//initialize the WebSocket server instance
-const wss = new WebSocket.Server({ server });
-wss.on('connection', (ws) => {
-    //connection is up, let's add a simple simple event
-    ws.on('message', (message) => {
-        //log the received message and send it back to the client
-        console.log('received: %s', message);
-        ws.send(`Hello, you sent -> ${message}`);
-    });
-    //send immediatly a feedback to the incoming connection
-    ws.send('Hi there, I am a WebSocket server');
-});
+app.use('/api/messages', router);
 server.listen(port, () => __awaiter(void 0, void 0, void 0, function* () {
     logger.info(`app started on port ${port}`);
-    // const webSocket = new ApiWebsocket();
-    // await webSocket.initialize(server);
+    const websocket = yield new api_websocket_1.ApiWebsocket();
+    yield websocket.initialize(server);
+    const controller = yield new server_controller_1.Controller(sequelize);
+    yield controller.initialize(router);
 }));
 //# sourceMappingURL=index.js.map

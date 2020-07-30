@@ -3,12 +3,6 @@ import { Typography, Paper, ListItem } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Login from './Login';
 
-export const StyledBody = styled.div`
-  height: 100vh;
-  width: 100%;
-  background-color: #bae7ff;
-`;
-
 export const StyledLogin = styled(Login)`
   && {
     position: absolute;

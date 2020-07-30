@@ -4,6 +4,7 @@ import WebSocket = require('ws');
 import { Server } from 'http';
 
 const logger = getLogger();
+
 export class ApiWebsocket {
   constructor() {}
 

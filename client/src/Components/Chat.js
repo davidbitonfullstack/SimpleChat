@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import ChatInput from './ChatInput';
 import ChatMessage from './ChatMessage';
-import { StyledLogin, StyledTitle, StyledBottom, StyledBody } from './Styles';
+import { StyledLogin, StyledTitle, StyledBottom } from './Styles';
+import { Grid, CssBaseline } from '@material-ui/core';
+import { MuiThemeProvider } from 'material-ui/styles';
 
 const baseAddress = process.env.API_URL || window.location.protocol + '//' + window.location.hostname + '/api';
 const websocketUrl = `${baseAddress.replace('http', 'ws')}/websocket`;
@@ -26,7 +28,6 @@ class Chat extends Component {
 
     this.ws.onmessage = (evt) => {
       const message = JSON.parse(evt.data);
-      debugger;
       this.addMessage(message);
     };
 
@@ -40,7 +41,6 @@ class Chat extends Component {
   }
 
   addMessage = (message) => {
-    debugger;
     this.setState((state) => ({
       messages: [
         ...state.messages,
@@ -60,7 +60,8 @@ class Chat extends Component {
 
   render() {
     return (
-      <StyledBody>
+      <MuiThemeProvider>
+        <CssBaseline />
         {this.state.isLoggedIn ? (
           <div>
             <StyledTitle>Hello {this.state.user}</StyledTitle>
@@ -76,7 +77,7 @@ class Chat extends Component {
         ) : (
           <StyledLogin login={(value) => this.setState({ isLoggedIn: true, user: value })} />
         )}
-      </StyledBody>
+      </MuiThemeProvider>
     );
   }
 }
