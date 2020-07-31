@@ -20,7 +20,6 @@ const cors_1 = require("./utils/cors");
 const api_websocket_1 = require("./controllers/api-websocket");
 const sequelize_1 = require("sequelize");
 const server_controller_1 = require("./controllers/server.controller");
-const path = require("path");
 const sequelize = new sequelize_1.Sequelize('simple_chat', 'root', 'root', {
     host: process.env.DATABASE_URL || '127.0.0.1',
     dialect: 'mysql',
@@ -32,15 +31,6 @@ const app = express();
 const port = process.env.PORT || 8095;
 const server = http_1.createServer(app);
 const router = express.Router();
-if (process.env.NODE_ENV === 'production') {
-    // Serve any static files
-    app.use(express.static(path.join(__dirname, 'client/build')));
-    // Handle React routing, return all requests to React app
-    app.get('*', function (req, res) {
-        res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
-    });
-}
-// app.use(express.static('public'));
 app.use(cors_1.corsHandler);
 app.use(bodyParser.json());
 app.use('/api/messages', router);
