@@ -22,7 +22,7 @@ export class Controller {
   }
 
   public initialize = async (router: express.Router) => {
-    logger.info(`Initializing UserProfileController with router`);
+    logger.info(`Initializing Controller with router`);
     router.get('/', this.getAll.bind(this));
     router.post('/', this.addMessage.bind(this));
   };
