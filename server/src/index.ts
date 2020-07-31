@@ -21,7 +21,7 @@ import { Controller } from './controllers/server.controller';
 // });
 
 const sequelize = new Sequelize('un5daxmcwi4eieeb', 'vlu8q30yl5ta16kv', 'd7e733oqgwh5dviy', {
-  host: '	nnmeqdrilkem9ked.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
+  host: 'nnmeqdrilkem9ked.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
   dialect: 'mysql',
   define: {
     timestamps: false,
