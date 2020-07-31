@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const APIUrl = 'http://localhost:8095/api';
+const APIUrl = 'http://my-simple-chat-david.herokuapp.com/api'; //TODO: in real app i'd use process.env || 'http://localhost:8095/api';
 
 process.env.NODE_ENV = 'development';
 
