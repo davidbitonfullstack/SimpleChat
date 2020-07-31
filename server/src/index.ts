@@ -5,7 +5,6 @@ logger.level = 'debug';
 
 import express = require('express');
 import bodyParser = require('body-parser');
-import WebSocket = require('ws');
 import { createServer } from 'http';
 import { corsHandler } from './utils/cors';
 import { ApiWebsocket } from './controllers/api-websocket';
