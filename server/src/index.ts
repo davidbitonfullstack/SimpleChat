@@ -11,10 +11,17 @@ import { corsHandler } from './utils/cors';
 import { ApiWebsocket } from './controllers/api-websocket';
 import { Sequelize } from 'sequelize';
 import { Controller } from './controllers/server.controller';
-import path = require('path');
 
-const sequelize = new Sequelize('simple_chat', 'root', 'root', {
-  host: process.env.DATABASE_URL || '127.0.0.1',
+// const sequelize = new Sequelize('simple_chat', 'root', 'root', {
+//   host: process.env.DATABASE_URL || '127.0.0.1',
+//   dialect: 'mysql',
+//   define: {
+//     timestamps: false,
+//   },
+// });
+
+const sequelize = new Sequelize('heroku_26c86ffe3518687', 'bf663595474107', 'e8f09d83', {
+  host: 'us-cdbr-east-02.cleardb.com',
   dialect: 'mysql',
   define: {
     timestamps: false,
