@@ -20,8 +20,15 @@ const cors_1 = require("./utils/cors");
 const api_websocket_1 = require("./controllers/api-websocket");
 const sequelize_1 = require("sequelize");
 const server_controller_1 = require("./controllers/server.controller");
-const sequelize = new sequelize_1.Sequelize('simple_chat', 'root', 'root', {
-    host: process.env.DATABASE_URL || '127.0.0.1',
+// const sequelize = new Sequelize('simple_chat', 'root', 'root', {
+//   host: process.env.DATABASE_URL || '127.0.0.1',
+//   dialect: 'mysql',
+//   define: {
+//     timestamps: false,
+//   },
+// });
+const sequelize = new sequelize_1.Sequelize('un5daxmcwi4eieeb', 'vlu8q30yl5ta16kv', 'd7e733oqgwh5dviy', {
+    host: '	nnmeqdrilkem9ked.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
     dialect: 'mysql',
     define: {
         timestamps: false,

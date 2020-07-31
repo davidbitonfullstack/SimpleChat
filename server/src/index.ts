@@ -20,8 +20,8 @@ import { Controller } from './controllers/server.controller';
 //   },
 // });
 
-const sequelize = new Sequelize('heroku_26c86ffe3518687', 'bf663595474107', 'e8f09d83', {
-  host: 'us-cdbr-east-02.cleardb.com',
+const sequelize = new Sequelize('un5daxmcwi4eieeb', 'vlu8q30yl5ta16kv', 'd7e733oqgwh5dviy', {
+  host: '	nnmeqdrilkem9ked.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
   dialect: 'mysql',
   define: {
     timestamps: false,

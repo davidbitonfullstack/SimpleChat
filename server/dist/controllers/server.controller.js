@@ -18,7 +18,7 @@ exports.router = express.Router();
 class Controller {
     constructor(sequelize) {
         this.initialize = (router) => __awaiter(this, void 0, void 0, function* () {
-            logger.info(`Initializing UserProfileController with router`);
+            logger.info(`Initializing Controller with router`);
             router.get('/', this.getAll.bind(this));
             router.post('/', this.addMessage.bind(this));
         });
