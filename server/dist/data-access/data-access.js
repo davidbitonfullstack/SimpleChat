@@ -54,7 +54,8 @@ class DataAccess {
         return __awaiter(this, void 0, void 0, function* () {
             logger.info(`DataAccess getAll`);
             try {
-                return yield Messages.findOne({ order: [['id', 'DESC']] });
+                const result = yield Messages.findAll({ order: [['id', 'DESC']], limit: 10 });
+                return result.reverse();
             }
             catch (err) {
                 const msg = `error while adding message: ${err}`;
