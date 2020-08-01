@@ -8,9 +8,9 @@ Run locally:
 cd into server folder -> npm install && npm start.
 cd into client folder -> npm install && npm run start.
 
-Server api url: http://localhost:8095/api/messages
-Client api url: http://localhost:3000
-Websocket can be tested on: ws://localhost:8095/api/websocket
+Server api url: http://localhost:8095/api/messages<br/>
+Client api url: http://localhost:3000<br/>
+Websocket can be tested on: ws://localhost:8095/api/websocket<br/>
 
 The chat server is hosted on:
 
@@ -22,9 +22,9 @@ https://5f249f822fd97d019dcc7aec--my-simple-chat.netlify.app/
 
 Simple Database script:
 
-CREATE TABLE `simple_chat`.`messages` (
-id int NOT NULL AUTO_INCREMENT,
-user varchar(255),
-message varchar(255),
-PRIMARY KEY (id)
+CREATE TABLE `simple_chat`.`messages` (<br/>
+id int NOT NULL AUTO_INCREMENT,<br/>
+user varchar(255),<br/>
+message varchar(255),<br/>
+PRIMARY KEY (id)<br/>
 );
