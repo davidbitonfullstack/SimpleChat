@@ -8,7 +8,7 @@ const logger = getLogger();
 export class ApiWebsocket {
   constructor() {}
 
-  public async initialize(appserver: Server) {
+  public async initialize(server) {
     logger.info(`Initializing ApiWebsocket with appserver`);
 
     const wss = new WebSocket.Server({ noServer: true });
@@ -23,9 +23,9 @@ export class ApiWebsocket {
       });
     });
 
-    appserver.on('upgrade', function upgrade(request, socket, head) {
+    server.on('upgrade', function upgrade(request, socket, head) {
       const pathname = url.parse(request.url).pathname;
-
+      console.log(pathname);
       if (pathname === '/api/websocket') {
         wss.handleUpgrade(request, socket, head, function done(ws: any) {
           wss.emit('connection', ws, request);

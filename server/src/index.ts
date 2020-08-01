@@ -11,22 +11,22 @@ import { ApiWebsocket } from './controllers/api-websocket';
 import { Sequelize } from 'sequelize';
 import { Controller } from './controllers/server.controller';
 
-// const sequelize = new Sequelize('simple_chat', 'root', 'root', {
-//   host: process.env.DATABASE_URL || '127.0.0.1',
-//   dialect: 'mysql',
-//   define: {
-//     timestamps: false,
-//   },
-// });
-
-//TODO: in real app export to config file and use process.env
-const sequelize = new Sequelize('un5daxmcwi4eieeb', 'vlu8q30yl5ta16kv', 'd7e733oqgwh5dviy', {
-  host: 'nnmeqdrilkem9ked.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
+const sequelize = new Sequelize('simple_chat', 'root', 'root', {
+  host: '127.0.0.1',
   dialect: 'mysql',
   define: {
     timestamps: false,
   },
 });
+
+//TODO: in real app export to config file and use process.env
+// const sequelize = new Sequelize('un5daxmcwi4eieeb', 'vlu8q30yl5ta16kv', 'd7e733oqgwh5dviy', {
+//   host: 'nnmeqdrilkem9ked.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
+//   dialect: 'mysql',
+//   define: {
+//     timestamps: false,
+//   },
+// });
 
 const app = express();
 const port = process.env.PORT || 8095;

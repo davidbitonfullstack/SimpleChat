@@ -1,12 +1,22 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 // initializing logger first
@@ -15,11 +25,12 @@ const logger = log4js_1.getLogger();
 logger.level = 'debug';
 const express = require("express");
 const bodyParser = require("body-parser");
-const http_1 = require("http");
+const http = __importStar(require("http"));
+const https = __importStar(require("https"));
 const cors_1 = require("./utils/cors");
-const api_websocket_1 = require("./controllers/api-websocket");
 const sequelize_1 = require("sequelize");
-const server_controller_1 = require("./controllers/server.controller");
+const fs_1 = require("fs");
+const path = require("path");
 // const sequelize = new Sequelize('simple_chat', 'root', 'root', {
 //   host: process.env.DATABASE_URL || '127.0.0.1',
 //   dialect: 'mysql',
@@ -35,18 +46,35 @@ const sequelize = new sequelize_1.Sequelize('un5daxmcwi4eieeb', 'vlu8q30yl5ta16k
         timestamps: false,
     },
 });
+const httpApp = express();
 const app = express();
-const port = process.env.PORT || 8095;
-const server = http_1.createServer(app);
+const httpsOptions = {
+    key: fs_1.readFileSync('cert/key.pem'),
+    cert: fs_1.readFileSync(path.join('cert', 'cert.pem')),
+};
+httpApp.set('port', process.env.PORT || 8095);
+httpApp.get('*', function (req, res, next) {
+    res.redirect('https://' + req.headers.host + '/' + req.path);
+});
+app.set('port', process.env.PORT || 443);
+// const app = express();
+// const port = process.env.PORT || 8095;
+// const server = createServer(app);
 const router = express.Router();
 app.use(cors_1.corsHandler);
 app.use(bodyParser.json());
 app.use('/api/messages', router);
-server.listen(port, () => __awaiter(void 0, void 0, void 0, function* () {
-    logger.info(`app started on port ${port}`);
-    const websocket = yield new api_websocket_1.ApiWebsocket();
-    yield websocket.initialize(server);
-    const controller = yield new server_controller_1.Controller(sequelize);
-    yield controller.initialize(router);
-}));
+http.createServer(httpApp).listen(httpApp.get('port'), function () {
+    console.log('Express HTTP server listening on port ' + httpApp.get('port'));
+});
+https.createServer(httpsOptions, app).listen(app.get('port'), function () {
+    console.log('Express HTTPS server listening on port ' + app.get('port'));
+});
+// server.listen(port, async () => {
+//   logger.info(`app started on port ${port}`);
+//   const websocket = await new ApiWebsocket();
+//   await websocket.initialize(server);
+//   const controller = await new Controller(sequelize);
+//   await controller.initialize(router);
+// });
 //# sourceMappingURL=index.js.map
