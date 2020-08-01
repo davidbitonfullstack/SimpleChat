@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const webpackBundleAnalyzer = require('webpack-bundle-analyzer');
 
-const APIUrl = 'http://my-simple-chat-david.herokuapp.com/api';
+const APIUrl = ''; //'http://my-simple-chat-david.herokuapp.com/api';
 
 process.env.NODE_ENV = 'production';
 
