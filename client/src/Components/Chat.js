@@ -7,7 +7,7 @@ import { MuiThemeProvider } from 'material-ui/styles';
 import { getMessages, postMessage } from '../Api/Server';
 
 const baseAddress = process.env.API_URL || window.location.protocol + '//' + window.location.hostname + '/api';
-const websocketUrl = `${baseAddress.replace('http', 'ws')}/websocket`;
+const websocketUrl = `${baseAddress.replace('https', 'wss')}/websocket`;
 
 class Chat extends Component {
   constructor() {

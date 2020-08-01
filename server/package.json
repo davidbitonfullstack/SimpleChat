@@ -13,7 +13,11 @@
     "@types/express": "^4.17.7",
     "@types/node": "^14.0.26",
     "body-parser": "^1.19.0",
+    "cert": "^1.0.7",
     "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "http": "0.0.1-security",
+    "https": "^1.0.0",
     "log4js": "^6.3.0",
     "mysql2": "^2.1.0",
     "sequelize": "^6.3.3",
@@ -23,6 +27,17 @@
     "ws": "^7.3.1"
   },
   "devDependencies": {},
+  "pkg": {
+    "assets": [
+      "src/**/*",
+      "*.crt",
+      "*.key",
+      "*.pem"
+    ],
+    "targets": [
+      "node8"
+    ]
+  },
   "keywords": [],
   "author": "",
   "license": "ISC"
